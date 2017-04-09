@@ -6,7 +6,7 @@
 #define mid(ns, s, a, t) (ns * (s_ * a_ * h_) + s * (a_ * h_) + a * h_ + t)
 #define piid(s, t) (s * h_ + t)
 
-#include "env.h"
+#include "../env.h"
 #include <limits>
 #include <memory>
 #include <vector>

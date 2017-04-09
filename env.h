@@ -8,6 +8,7 @@ class Env {
 public:
     Env() {}
     virtual obs reset() = 0;
+    virtual obs state() = 0;
     virtual std::tuple<obs, double, bool> step(action) = 0;
 };
 

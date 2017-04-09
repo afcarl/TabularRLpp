@@ -1,4 +1,4 @@
-#include "chain_mdp.h"
+#include "../chain_mdp.h"
 #include "ubev.h"
 
 //const int s_params[] = {10, 25, 50, 100};
@@ -14,7 +14,7 @@ int main() {
     for (auto s: s_params) {
         for (auto delta: delta_params) {
             for (auto beta: beta_params) {
-                std::shared_ptr<ChainMDP> chain_mdp(new ChainMDP(s));
+                std::shared_ptr<ChainMDP> chain_mdp(new ChainMDP(s, true));
                 std::vector<double> rewards;
                 UBEV ubev(s, 2, s, delta, beta, chain_mdp);
                 ubev.train(num_episodes, rewards);

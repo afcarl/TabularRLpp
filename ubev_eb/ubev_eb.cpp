@@ -1,20 +1,17 @@
-#include "chain_mdp.h"
+#include "../chain_mdp.h"
 #include "ubev_eb.h"
 
-//const int s_params[] = {10, 25, 50, 100};
-//const double delta_params[] = {0.1, 0.01};
-//const double beta_params[] = {1.0, 0.5, 0.1, 0.05, 0.01};
-
-const int s_params[] = {100};
+const int s_params[] = {100, 200};
 const double delta_params[] = {0.1};
-const double beta_params[] = {1.0};
+const double beta_params[] = {1.0, 0.8, 0.5, 0.2, 0.1, 0.05, 0.01};
+
 
 int main() {
     const int num_episodes = 1000000;
     for (auto s: s_params) {
         for (auto delta: delta_params) {
             for (auto beta: beta_params) {
-                std::shared_ptr<ChainMDP> chain_mdp(new ChainMDP(s));
+                std::shared_ptr<ChainMDP> chain_mdp(new ChainMDP(s, true));
                 std::vector<double> rewards;
                 UBEV_EB ubev(s, 2, s, delta, beta, chain_mdp);
                 ubev.train(num_episodes, rewards);
