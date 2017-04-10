@@ -1,7 +1,7 @@
 #include "../chain_mdp.h"
 #include "mbie_eb.h"
 
-const int s_params[] = {100, 200};
+const int s_params[] = {50};//{100, 200};
 const double delta_params[] = {0.1};
 const double beta_params[] = {2.0, 1.0, 0.5, 0.2, 0.1};
 
@@ -9,7 +9,7 @@ int main() {
     const int num_episodes = 1000000;
     for (auto s: s_params) {
         for (auto beta: beta_params) {
-            std::shared_ptr<ChainMDP> chain_mdp(new ChainMDP(s, true));
+            std::shared_ptr<ChainMDP> chain_mdp(new ChainMDP(s, true, 5));
             std::vector<double> rewards;
             MBIE_EB mbie_eb(s, 2, s, beta, chain_mdp);
             mbie_eb.train(num_episodes, rewards);

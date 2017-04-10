@@ -1,18 +1,16 @@
 import numpy as np
-import argparse
 import matplotlib.pyplot as plt
 
-parser = argparse.ArgumentParser()
-parser.add_argument('f', type=str)
-args = parser.parse_args()
 
-f = open(args.f, 'r')
+def get_rewards(filename, prefix=''):
+    f = open(prefix+filename, 'r')
 
-rewards = []
-for line in f.readlines():
-    rewards.append(float(line))
+    rewards = []
+    for line in f.readlines():
+        rewards.append(float(line))
 
-rewards = rewards[3:]
+    rewards = rewards[3:]
+    return rewards[3:]
 
 
 def running_mean(x, N):
@@ -20,9 +18,14 @@ def running_mean(x, N):
     return (cumsum[N:] - cumsum[:-N]) / N
 
 
-results = running_mean(rewards, 50000)
-plt.plot(results)
-ax = plt.gca()
-ax.set_xlim(xmin=1000)
-ax.set_xscale('log')
-plt.show()
+def draw(x_list, l_list, N=20000, logscale=True):
+    for x, l in zip(x_list, l_list):
+        x_ = running_mean(x, N)
+        plt.plot(x_, label=l)
+    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+    plt.gca().set_xlim([1000, 1000000])
+    if logscale:
+        plt.gca().set_xscale('log')
+    else:
+        plt.gca().set_xscale('linear')
+    plt.show()
