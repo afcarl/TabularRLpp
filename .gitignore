@@ -29,6 +29,8 @@
 *.app
 
 cmake-build-*/
+bin/
+final/
 .idea/
 .ipynb_checkpoints/
 *.pyc
