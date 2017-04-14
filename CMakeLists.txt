@@ -5,7 +5,7 @@ project(UBEV_EB)
 project(MBIE_EB_INFINITE)
 project(UBEV_EB_INFINITE)
 
-set(CMAKE_CXX_STANDARD 11)
+add_compile_options(-std=c++11)
 
 set(UBEV_FILES chain_mdp.h ubev/ubev.h env.h ubev/ubev.cpp)
 set(MBIE_EB_FILES chain_mdp.h env.h mbie_eb/mbie_eb.h mbie_eb/mbie_eb.cpp)
